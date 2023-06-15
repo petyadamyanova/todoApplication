@@ -1,25 +1,40 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class TaskWithDeadline extends Task{
-    private Date deadline;
+    private LocalDate deadline;
 
-    public TaskWithDeadline(String title, String description, Date deadline) {
+    public TaskWithDeadline(String title, String description, LocalDate deadline) {
         super(title, description);
         this.deadline = deadline;
     }
 
-    public Date getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
     public boolean isExpired() {
-        Date currentDate = new Date();
-        return deadline.before(currentDate);
+        LocalDate currentDate = LocalDate.now();
+        return deadline.isBefore(currentDate);
     }
 
-    public void changeDeadLine(Date newDeadLine){
-        Date currentDate = new Date();
-        if(!newDeadLine.before(currentDate))
+    public void changeDeadLine(LocalDate newDeadLine){
+        LocalDate currentDate = LocalDate.now();
+        if(!newDeadLine.isBefore(currentDate))
             this.deadline = newDeadLine;
+    }
+
+    @Override
+    public void printTask(){
+        System.out.println("Task " + this.get_id() + " :");
+        System.out.println("Title - " + this.getTitle());
+        System.out.println("Description - " + this.getDescription());
+        System.out.println("Created date: " + this.getCreatedDate());
+        if(this.isCompleted()) {
+            System.out.println("Status : completed");
+        }else{
+            System.out.println("Status : uncompleted");
+        }
+        System.out.println("Deadline: " + this.deadline);
     }
 }

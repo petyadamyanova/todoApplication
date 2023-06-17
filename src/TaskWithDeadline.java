@@ -1,11 +1,16 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class TaskWithDeadline extends Task{
+public class TaskWithDeadline extends Task implements Serializable {
     private LocalDate deadline;
 
     public TaskWithDeadline(String title, String description, LocalDate deadline) {
         super(title, description);
+        this.deadline = deadline;
+    }
+
+    public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
     }
 

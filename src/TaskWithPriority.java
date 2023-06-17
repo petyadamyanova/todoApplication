@@ -1,4 +1,6 @@
-public class TaskWithPriority extends Task{
+import java.io.Serializable;
+
+public class TaskWithPriority extends Task implements Serializable {
     private PriorityLevel level;
 
     TaskWithPriority(String title, String description, PriorityLevel level) {
@@ -12,6 +14,10 @@ public class TaskWithPriority extends Task{
             case MEDIUM -> "Medium";
             case HIGH -> "High";
         };
+    }
+
+    public void setLevel(PriorityLevel level) {
+        this.level = level;
     }
 
     @Override
